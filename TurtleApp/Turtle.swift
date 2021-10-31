@@ -56,12 +56,26 @@ class Turtle {
         self.canvas.addPath(id: id, path: rotatedPath)
     }
     
-    func move(distance: CGFloat) {
+    func forward(distance: CGFloat) {
         
         let prevXPos = xPos
         let prevYPos = yPos
         xPos = xPos + (distance * sin(degreesToRadians(direction))).rounded()
         yPos = yPos + (distance * cos(degreesToRadians(direction))).rounded()
+        
+        if pen == true {
+            linePath.move(to: CGPoint(x: prevXPos, y: prevYPos))
+            linePath.addLine(to: CGPoint(x: xPos, y: yPos))
+        }
+        draw()
+    }
+    
+    func backward(distance: CGFloat) {
+        
+        let prevXPos = xPos
+        let prevYPos = yPos
+        xPos = xPos - (distance * sin(degreesToRadians(direction))).rounded()
+        yPos = yPos - (distance * cos(degreesToRadians(direction))).rounded()
         
         if pen == true {
             linePath.move(to: CGPoint(x: prevXPos, y: prevYPos))
