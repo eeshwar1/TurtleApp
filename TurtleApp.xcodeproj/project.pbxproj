@@ -11,6 +11,9 @@
 		65DBFAF4272DF7C600CD8817 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBFAF3272DF7C600CD8817 /* ViewController.swift */; };
 		65DBFAF6272DF7C700CD8817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65DBFAF5272DF7C700CD8817 /* Assets.xcassets */; };
 		65DBFAF9272DF7C700CD8817 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DBFAF7272DF7C700CD8817 /* Main.storyboard */; };
+		65DBFB01272DFCA100CD8817 /* Turtle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBFB00272DFCA100CD8817 /* Turtle.swift */; };
+		65DBFB03272E0A7500CD8817 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBFB02272E0A7500CD8817 /* Canvas.swift */; };
+		65DBFB05272E305A00CD8817 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBFB04272E305A00CD8817 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		65DBFAF5272DF7C700CD8817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65DBFAF8272DF7C700CD8817 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65DBFAFA272DF7C700CD8817 /* TurtleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TurtleApp.entitlements; sourceTree = "<group>"; };
+		65DBFB00272DFCA100CD8817 /* Turtle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turtle.swift; sourceTree = "<group>"; };
+		65DBFB02272E0A7500CD8817 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		65DBFB04272E305A00CD8817 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +59,10 @@
 			isa = PBXGroup;
 			children = (
 				65DBFAF1272DF7C600CD8817 /* AppDelegate.swift */,
+				65DBFB00272DFCA100CD8817 /* Turtle.swift */,
+				65DBFB02272E0A7500CD8817 /* Canvas.swift */,
 				65DBFAF3272DF7C600CD8817 /* ViewController.swift */,
+				65DBFB04272E305A00CD8817 /* Utilities.swift */,
 				65DBFAF5272DF7C700CD8817 /* Assets.xcassets */,
 				65DBFAF7272DF7C700CD8817 /* Main.storyboard */,
 				65DBFAFA272DF7C700CD8817 /* TurtleApp.entitlements */,
@@ -133,6 +142,9 @@
 			files = (
 				65DBFAF4272DF7C600CD8817 /* ViewController.swift in Sources */,
 				65DBFAF2272DF7C600CD8817 /* AppDelegate.swift in Sources */,
+				65DBFB01272DFCA100CD8817 /* Turtle.swift in Sources */,
+				65DBFB05272E305A00CD8817 /* Utilities.swift in Sources */,
+				65DBFB03272E0A7500CD8817 /* Canvas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

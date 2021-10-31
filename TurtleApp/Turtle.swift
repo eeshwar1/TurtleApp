@@ -1,0 +1,93 @@
+//
+//  Turtle.swift
+//  TurtleApp
+//
+//  Created by Venkateswaran Venkatakrishnan on 10/30/21.
+//
+
+import Foundation
+import AppKit
+
+class Turtle {
+    
+    private var id: String = ""
+    private var xPos: CGFloat = 250
+    private var yPos: CGFloat = 250
+    
+    private var height: CGFloat = 50
+    private var width: CGFloat = 50
+    
+    private var linePath: CGMutablePath = CGMutablePath()
+    
+    // direction the turtle is currently pointing
+    // angle in degrees with 0 being north
+    private var direction: CGFloat = 0
+    
+    private var pen: Bool = true
+    
+    private var canvas: Canvas
+    
+    init(id: String, canvas: Canvas) {
+        self.id = id
+        self.canvas = canvas
+        self.xPos = canvas.bounds.width/2
+        self.yPos = canvas.bounds.height/2
+        draw()
+    }
+        
+    func draw() {
+        
+        print("turtle at position (\(xPos),\(yPos)) facing: \(direction)")
+       
+        let path = CGMutablePath()
+        
+        path.move(to: CGPoint(x: xPos, y: yPos))
+        path.addLine(to: CGPoint(x: xPos - width / 2, y: yPos - height))
+        path.addLine(to: CGPoint(x: xPos, y: yPos - 0.5 * height))
+        path.addLine(to: CGPoint(x: xPos + width / 2, y: yPos - height))
+        path.closeSubpath()
+    
+        let rotatedPath =  rotatePath(path: path, radians: degreesToRadians(direction + 90))
+        
+        rotatedPath.addPath(linePath)
+        self.canvas.addPath(id: id, path: rotatedPath)
+    }
+    
+    
+    
+    func move(distance: CGFloat) {
+        
+        let prevXPos  = xPos
+        let prevYPos = yPos
+        xPos = xPos + (distance * sin(degreesToRadians(direction))).rounded()
+        yPos = yPos + (distance * cos(degreesToRadians(direction))).rounded()
+        
+        if pen == true {
+            linePath.move(to: CGPoint(x: prevXPos, y: prevYPos))
+            linePath.addLine(to: CGPoint(x: xPos, y: yPos))
+        }
+        draw()
+    }
+    
+    func right(angle: CGFloat) {
+        
+        direction = direction - angle
+        
+    }
+   
+    func left(angle: CGFloat) {
+        
+        direction = direction + angle
+    }
+   
+    func penUp() {
+        
+        self.pen = false
+    }
+    
+    func penDown() {
+        
+        self.pen = true
+    }
+
+}
