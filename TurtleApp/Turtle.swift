@@ -56,11 +56,9 @@ class Turtle {
         self.canvas.addPath(id: id, path: rotatedPath)
     }
     
-    
-    
     func move(distance: CGFloat) {
         
-        let prevXPos  = xPos
+        let prevXPos = xPos
         let prevYPos = yPos
         xPos = xPos + (distance * sin(degreesToRadians(direction))).rounded()
         yPos = yPos + (distance * cos(degreesToRadians(direction))).rounded()
@@ -81,6 +79,10 @@ class Turtle {
     func left(angle: CGFloat) {
         
         direction = direction + angle
+        
+        if (direction > 360) {
+            direction = direction.truncatingRemainder(dividingBy: 360)
+        }
     }
    
     func penUp() {
