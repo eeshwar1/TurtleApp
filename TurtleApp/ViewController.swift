@@ -16,8 +16,8 @@ class ViewController: NSViewController {
 
         let turtle: Turtle = Turtle(id: "a", canvas: canvas)
         
-        print(cos(degreesToRadians(135)))
-        print(cos(degreesToRadians(45)))
+        // print(cos(degreesToRadians(135)))
+        // print(cos(degreesToRadians(45)))
         
         turtle.move(distance: 50)
         turtle.left(angle: 45)

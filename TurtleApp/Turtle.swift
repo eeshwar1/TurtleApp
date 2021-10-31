@@ -11,11 +11,11 @@ import AppKit
 class Turtle {
     
     private var id: String = ""
-    private var xPos: CGFloat = 250
-    private var yPos: CGFloat = 250
+    private var xPos: CGFloat = 0
+    private var yPos: CGFloat = 0
     
-    private var height: CGFloat = 50
-    private var width: CGFloat = 50
+    private var height: CGFloat = 10
+    private var width: CGFloat = 10
     
     private var linePath: CGMutablePath = CGMutablePath()
     
@@ -24,6 +24,9 @@ class Turtle {
     private var direction: CGFloat = 0
     
     private var pen: Bool = true
+    
+    private var fillColor: NSColor = .black
+    private var penColor: NSColor = .black
     
     private var canvas: Canvas
     
@@ -37,7 +40,7 @@ class Turtle {
         
     func draw() {
         
-        print("turtle at position (\(xPos),\(yPos)) facing: \(direction)")
+        // print("turtle at position (\(xPos),\(yPos)) facing: \(direction)")
        
         let path = CGMutablePath()
         
@@ -47,7 +50,7 @@ class Turtle {
         path.addLine(to: CGPoint(x: xPos + width / 2, y: yPos - height))
         path.closeSubpath()
     
-        let rotatedPath =  rotatePath(path: path, radians: degreesToRadians(direction + 90))
+        let rotatedPath = rotatePath(path: path, radians: degreesToRadians(direction + 90))
         
         rotatedPath.addPath(linePath)
         self.canvas.addPath(id: id, path: rotatedPath)
@@ -90,4 +93,7 @@ class Turtle {
         self.pen = true
     }
 
+    func heading() -> CGFloat {
+        return direction
+    }
 }
