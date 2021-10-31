@@ -8,9 +8,14 @@
 import Foundation
 import AppKit
 
+enum AngleUnits {
+    case degrees
+    case radians
+}
 class Turtle {
     
     private var id: String = ""
+    
     private var xPos: CGFloat = 0
     private var yPos: CGFloat = 0
     
@@ -21,39 +26,66 @@ class Turtle {
     
     // direction the turtle is currently pointing
     // angle in degrees with 0 being north
+    private var angleUnits: AngleUnits = .degrees
     private var direction: CGFloat = 0
     
-    private var pen: Bool = true
+    private var penDown: Bool = true
     
-    private var fillColor: NSColor = .black
-    private var penColor: NSColor = .black
+    private var fillColor: CGColor = .black
+    private var penColor: CGColor = .black
     
     private var canvas: Canvas
     
     init(id: String, canvas: Canvas) {
         self.id = id
         self.canvas = canvas
-        self.xPos = canvas.bounds.width/2
-        self.yPos = canvas.bounds.height/2
-        draw()
+        // self.xPos = canvas.bounds.width/2
+        // self.yPos = canvas.bounds.height/2
+        self.canvas.addTurlte(turtle: self)
+    
     }
         
-    func draw() {
-        
-        // print("turtle at position (\(xPos),\(yPos)) facing: \(direction)")
+    func draw(context: CGContext?) {
        
         let path = CGMutablePath()
         
         path.move(to: CGPoint(x: xPos, y: yPos))
         path.addLine(to: CGPoint(x: xPos - width / 2, y: yPos - height))
-        path.addLine(to: CGPoint(x: xPos, y: yPos - 0.5 * height))
+        path.addLine(to: CGPoint(x: xPos, y: yPos - 0.8 * height))
         path.addLine(to: CGPoint(x: xPos + width / 2, y: yPos - height))
         path.closeSubpath()
     
         let rotatedPath = rotatePath(path: path, radians: degreesToRadians(direction + 90))
         
         rotatedPath.addPath(linePath)
-        self.canvas.addPath(id: id, path: rotatedPath)
+        
+        context?.setLineWidth(1.0)
+        context?.setStrokeColor(self.penColor)
+        context?.setFillColor(self.fillColor)
+        
+        context?.addPath(rotatedPath)
+        
+        context?.drawPath(using: .fillStroke)
+    }
+    
+    func printDetails() {
+        
+        print("turtle at position (\(xPos),\(yPos)) facing: \(direction)")
+        
+    }
+    
+    // MARK: Movement
+    
+    func goto(x: CGFloat, y: CGFloat) {
+        
+        self.xPos = x
+        self.yPos = y
+        
+    }
+    
+    func goto(point: CGPoint) {
+        
+        self.goto(x: point.x, y: point.y)
     }
     
     func backward(distance: CGFloat) {
@@ -70,16 +102,32 @@ class Turtle {
         
         let prevXPos = xPos
         let prevYPos = yPos
-        xPos = xPos + (isForward ? 1 : -1) * (distance * sin(degreesToRadians(direction))).rounded()
-        yPos = yPos + (isForward ? 1 : -1) * (distance * cos(degreesToRadians(direction))).rounded()
         
-        if pen == true {
+        let angleRadians = self.angleUnits == .radians ? direction : degreesToRadians(direction)
+        
+        xPos = xPos + (isForward ? 1 : -1) * (distance * sin(angleRadians)).rounded()
+        yPos = yPos + (isForward ? 1 : -1) * (distance * cos(angleRadians)).rounded()
+        
+        if penDown == true {
             linePath.move(to: CGPoint(x: prevXPos, y: prevYPos))
             linePath.addLine(to: CGPoint(x: xPos, y: yPos))
         }
-        draw()
+        
     }
     
+    // MARK: Direction
+    
+    func radians() {
+        
+        self.angleUnits = .radians
+        
+    }
+    
+    func degrees() {
+        
+        self.angleUnits = .degrees
+        
+    }
  
     func right(angle: CGFloat) {
         
@@ -95,18 +143,42 @@ class Turtle {
             direction = direction.truncatingRemainder(dividingBy: 360)
         }
     }
-   
-    func penUp() {
-        
-        self.pen = false
-    }
     
-    func penDown() {
-        
-        self.pen = true
-    }
-
     func heading() -> CGFloat {
         return direction
     }
+    
+    // MARK: Pen
+   
+    func penup() {
+        
+        self.penDown = false
+    }
+    
+    func pendown() {
+        
+        self.penDown = true
+    }
+    
+    func isdown() -> Bool {
+        return self.penDown
+    }
+    
+    // MARK: Color
+    
+    func pencolor(color: CGColor) {
+        self.penColor = color
+    }
+    
+    func fillcolor(color: CGColor) {
+        self.fillColor = color
+    }
+    
+    func color(color: CGColor) {
+        self.fillcolor(color: color)
+        self.pencolor(color: color)
+    }
+    
+ 
 }
+

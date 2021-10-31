@@ -9,24 +9,30 @@ import Foundation
 import AppKit
 
 class Canvas: NSView {
-    
-    var paths: [String: CGPath] = [:]
+
+    var turtles: [Turtle] = []
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
         let context = NSGraphicsContext.current?.cgContext
         
-        context?.setLineWidth(1.0)
-        context?.setFillColor(.black)
-        for (_, path) in paths {
-            context?.addPath(path)
+        for turtle in turtles {
+            turtle.draw(context: context)
         }
-        context?.drawPath(using: .fillStroke)
+        
     }
     
-    func addPath(id: String, path: CGPath) {
-     
-        self.paths[id] = path
+    func addTurlte(turtle: Turtle) {
+        self.turtles.append(turtle)
     }
+    
+    func getContext() -> CGContext? {
+        
+        if let context = NSGraphicsContext.current {
+            return context.cgContext
+        }
+        return nil
+    }
+    
 }
