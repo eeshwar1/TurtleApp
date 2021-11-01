@@ -138,14 +138,17 @@ class Turtle {
     func left(angle: CGFloat) {
         
         direction = direction + angle
+        let maxAngle = self.angleUnits == .radians ? 2 * CGFloat.pi : 360
         
-        if (direction > 360) {
-            direction = direction.truncatingRemainder(dividingBy: 360)
+        if (direction > maxAngle) {
+            direction = direction.truncatingRemainder(dividingBy: maxAngle)
         }
     }
     
     func heading() -> CGFloat {
-        return direction
+        
+        return self.angleUnits == .radians ? direction : degreesToRadians(direction)
+        
     }
     
     // MARK: Pen

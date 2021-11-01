@@ -24,7 +24,7 @@ class ViewController: NSViewController {
         turtle.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         turtle2.color(color: .init(red: 0, green: 255, blue: 0, alpha: 1))
         
-        turtle2.goto(x: 200, y: 200)
+        turtle2.goto(x: 300, y: 200)
         turtle2.forward(distance: 50)
         turtle2.left(angle: 45)
         turtle2.forward(distance: 100)
