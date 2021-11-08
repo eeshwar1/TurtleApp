@@ -714,16 +714,15 @@
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="oS9-es-qdS" customClass="Canvas" customModule="TurtleApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="oS9-es-qdS" secondAttribute="height" multiplier="1:1" id="F8g-3c-vur"/>
-                                            <constraint firstAttribute="width" constant="800" id="eqa-bX-wbP"/>
-                                        </constraints>
                                     </customView>
-                                    <stackView distribution="equalCentering" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EfC-NK-bz8">
-                                        <rect key="frame" x="810" y="700" width="130" height="100"/>
+                                    <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EfC-NK-bz8">
+                                        <rect key="frame" x="810" y="690" width="130" height="110"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1V4-ce-Ur8">
-                                                <rect key="frame" x="-7" y="75" width="122" height="30"/>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1V4-ce-Ur8">
+                                                <rect key="frame" x="-7" y="83" width="122" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="KNf-8J-fmm"/>
+                                                </constraints>
                                                 <buttonCell key="cell" type="push" title="Circle Drawing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Piv-Qf-Bou">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -732,8 +731,11 @@
                                                     <action selector="circleDrawingWithSender:" target="XfG-lQ-9wD" id="lHB-QZ-vxk"/>
                                                 </connections>
                                             </button>
-                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBu-ZY-Iy5">
-                                                <rect key="frame" x="-7" y="47" width="112" height="32"/>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FBu-ZY-Iy5">
+                                                <rect key="frame" x="-7" y="53" width="112" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Rnl-kV-KBC"/>
+                                                </constraints>
                                                 <buttonCell key="cell" type="push" title="Snake Kolam" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hoQ-od-zhJ">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -742,8 +744,11 @@
                                                     <action selector="drawSnakeKolamWithSender:" target="XfG-lQ-9wD" id="ppu-Ig-Y4V"/>
                                                 </connections>
                                             </button>
-                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHO-dX-dbU">
-                                                <rect key="frame" x="-7" y="21" width="144" height="30"/>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UHO-dX-dbU">
+                                                <rect key="frame" x="-7" y="23" width="144" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="vDK-C3-osh"/>
+                                                </constraints>
                                                 <buttonCell key="cell" type="push" title="Anklets of Krishna" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vot-FW-aP9">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -752,8 +757,11 @@
                                                     <action selector="drawAnkletsOfKrishnaWithSender:" target="XfG-lQ-9wD" id="sMd-Zl-9gs"/>
                                                 </connections>
                                             </button>
-                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="meP-Qe-xTM">
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="meP-Qe-xTM">
                                                 <rect key="frame" x="-7" y="-7" width="66" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Phy-yh-uFY"/>
+                                                </constraints>
                                                 <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="srf-3h-TpN">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -763,9 +771,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="Qkw-Gk-BX4"/>
-                                        </constraints>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
@@ -780,9 +785,6 @@
                                         </customSpacing>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="EfC-NK-bz8" firstAttribute="leading" secondItem="oS9-es-qdS" secondAttribute="trailing" constant="10" id="jVl-i0-w9m"/>
-                                </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
@@ -794,10 +796,10 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="hO4-Jz-i9B" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="A3J-8s-AwA"/>
-                            <constraint firstAttribute="bottom" secondItem="hO4-Jz-i9B" secondAttribute="bottom" constant="10" id="IYk-cq-BTx"/>
-                            <constraint firstItem="hO4-Jz-i9B" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="Ivp-lr-ijZ"/>
-                            <constraint firstAttribute="trailing" secondItem="hO4-Jz-i9B" secondAttribute="trailing" constant="10" id="RIB-CH-V1V"/>
+                            <constraint firstItem="hO4-Jz-i9B" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Clz-zn-Fff"/>
+                            <constraint firstItem="hO4-Jz-i9B" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="HBA-co-PBM"/>
+                            <constraint firstItem="hO4-Jz-i9B" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="HZV-O6-Yln"/>
+                            <constraint firstItem="hO4-Jz-i9B" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="Ptw-Yy-D7F"/>
                         </constraints>
                     </view>
                     <connections>
