@@ -41,13 +41,15 @@ class ViewController: NSViewController {
             turtle.left(angle: 170)
             
         }
+        
+        self.canvas.needsDisplay = true
     }
     
     fileprivate func snakeKolam() {
         self.t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         
         
-        self.t.goto(x: 300, y: 150)
+        self.t.goto(x: 300, y: 200)
         let snake_rules: [String: String] = ["-":"r", "+":"l", "f":"f", "b":"f+f+f--f--f+f+f"]
         
         let snake_replacementRules: [String: String] = ["b": "b+f+b--f--b+f+b"]
@@ -56,13 +58,15 @@ class ViewController: NSViewController {
         let drawing = replace(seq: snake_start, replacementRules: snake_replacementRules, n: 3)
     
         draw(commands: drawing, rules: snake_rules, turtle: t)
+        
+        self.canvas.needsDisplay = true
     }
     
     fileprivate func ankletsOfKrishna() {
         
         self.t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         
-        self.t.goto(x: 300, y: 300)
+        self.t.goto(x: 400, y: 400)
         
         self.t.left(angle: 45)
     
@@ -73,6 +77,8 @@ class ViewController: NSViewController {
         let drawing = replace(seq: krishna_start, replacementRules: krishna_replacementRules, n: 3)
         
         draw(commands: drawing, rules: krishna_rules, turtle: t)
+        
+        self.canvas.needsDisplay = true
     }
     
     
@@ -85,10 +91,27 @@ class ViewController: NSViewController {
         
         // snakeKolam()
         
-        ankletsOfKrishna()
+        // ankletsOfKrishna()
         
     }
     
+    
+    @IBAction func circleDrawing(sender: NSButton) {
+        
+        turtleDrawing()
+    }
+    
+    
+    @IBAction func drawSnakeKolam(sender: NSButton) {
+        
+        snakeKolam()
+    }
+    
+    
+    @IBAction func drawAnkletsOfKrishna(sender: NSButton) {
+        
+        ankletsOfKrishna()
+    }
     func replace(seq: String, replacementRules: [String: String], n: Int) -> String {
         
         var oldSeq = seq
