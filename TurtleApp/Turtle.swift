@@ -23,6 +23,8 @@ class Turtle {
     private var width: CGFloat = 10
     
     private var linePath: CGMutablePath = CGMutablePath()
+    private var turtleShapePath: CGMutablePath = CGMutablePath()
+    private var turtleShape: CGMutablePath = CGMutablePath()
     
     // direction the turtle is currently pointing
     // angle in degrees with 0 being north
@@ -46,20 +48,19 @@ class Turtle {
         // self.xPos = canvas.bounds.width/2
         // self.yPos = canvas.bounds.height/2
         self.canvas.addTurlte(turtle: self)
-    
+        
+        self.turtleShape = drawTurtleShape()
+        self.turtleShapePath = self.turtleShape
     }
         
     func draw(context: CGContext?) {
-       
-        let path = CGMutablePath()
         
-        path.move(to: CGPoint(x: xPos, y: yPos))
-        path.addLine(to: CGPoint(x: xPos - width / 2, y: yPos - height))
-        path.addLine(to: CGPoint(x: xPos, y: yPos - 0.8 * height))
-        path.addLine(to: CGPoint(x: xPos + width / 2, y: yPos - height))
-        path.closeSubpath()
+        var rotatedPath: CGMutablePath = CGMutablePath()
+        
+        if self.turtleShapePath == self.turtleShape {
     
-        let rotatedPath = rotatePath(path: path, radians: degreesToRadians(direction + 90))
+            rotatedPath = rotatePath(path: self.turtleShapePath, radians: degreesToRadians(direction + 90))
+        }
         
         rotatedPath.addPath(linePath)
         
@@ -72,6 +73,19 @@ class Turtle {
         context?.drawPath(using: .stroke)
     }
     
+    func drawTurtleShape() -> CGMutablePath {
+        
+        let path = CGMutablePath()
+        
+        path.move(to: CGPoint(x: xPos, y: yPos))
+        path.addLine(to: CGPoint(x: xPos - width / 2, y: yPos - height))
+        path.addLine(to: CGPoint(x: xPos, y: yPos - 0.8 * height))
+        path.addLine(to: CGPoint(x: xPos + width / 2, y: yPos - height))
+        path.closeSubpath()
+        
+        return path
+        
+    }
     func printDetails() {
         
         print("turtle at position (\(xPos),\(yPos)) facing: \(direction)")
@@ -201,6 +215,13 @@ class Turtle {
         self.pencolor(color: color)
     }
     
- 
+    // Clear
+    
+    func clear() {
+        
+        self.linePath = CGMutablePath()
+        self.turtleShapePath = CGMutablePath()
+    }
+    
 }
 

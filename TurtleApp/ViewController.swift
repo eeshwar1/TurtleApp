@@ -11,8 +11,6 @@ class ViewController: NSViewController {
 
     @IBOutlet var canvas: Canvas!
     
-    var t: Turtle = Turtle()
-    
     fileprivate func turtleDrawing() {
         
         let turtle: Turtle = Turtle(id: "a", canvas: canvas)
@@ -46,10 +44,13 @@ class ViewController: NSViewController {
     }
     
     fileprivate func snakeKolam() {
-        self.t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         
+        let t: Turtle = Turtle(id: "t", canvas: canvas)
         
-        self.t.goto(x: 300, y: 200)
+        t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
+        
+        t.goto(x: 400, y: 100)
+        
         let snake_rules: [String: String] = ["-":"r", "+":"l", "f":"f", "b":"f+f+f--f--f+f+f"]
         
         let snake_replacementRules: [String: String] = ["b": "b+f+b--f--b+f+b"]
@@ -64,11 +65,13 @@ class ViewController: NSViewController {
     
     fileprivate func ankletsOfKrishna() {
         
-        self.t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
+        let t: Turtle = Turtle(id: "t", canvas: canvas)
         
-        self.t.goto(x: 400, y: 400)
+        t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         
-        self.t.left(angle: 45)
+        t.goto(x: 400, y: 400)
+        
+        t.left(angle: 45)
     
         let krishna_rules: [String: String] = ["a":"A", "b":"B", "f":"F"]
         let krishna_replacementRules: [String: String] = ["a" : "afbfa", "b" : "afbfbfbfa" ]
@@ -85,11 +88,10 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.t = Turtle(id:"t", canvas: canvas)
         
         // turtleDrawing()
         
-        // snakeKolam()
+        snakeKolam()
         
         // ankletsOfKrishna()
         
@@ -98,19 +100,28 @@ class ViewController: NSViewController {
     
     @IBAction func circleDrawing(sender: NSButton) {
         
+        self.canvas.clear()
         turtleDrawing()
     }
     
     
     @IBAction func drawSnakeKolam(sender: NSButton) {
         
+        self.canvas.clear()
         snakeKolam()
     }
     
     
     @IBAction func drawAnkletsOfKrishna(sender: NSButton) {
         
+        self.canvas.clear()
         ankletsOfKrishna()
+    }
+    
+    @IBAction func clearCanvas(sender: NSButton) {
+        
+        self.canvas.clear()
+        
     }
     func replace(seq: String, replacementRules: [String: String], n: Int) -> String {
         
@@ -149,11 +160,11 @@ class ViewController: NSViewController {
                 // print("\nleft")
                 self.l(t: turtle)
             case "A":
-                self.A(t: t)
+                self.A(t: turtle)
             case "B":
-                self.B(t: t)
+                self.B(t: turtle)
             case "F":
-                self.F(t: t)
+                self.F(t: turtle)
             default:
                 draw(commands: cmd!, rules: rules, turtle: turtle)
                 
@@ -178,12 +189,12 @@ class ViewController: NSViewController {
     
     func A(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 255, green: 0, blue: 0, alpha: 1.0))
-        t.circle(radius: 5, extent: 90, steps: 0)
+        t.circle(radius: 10, extent: 90, steps: 0)
     }
     
     func B(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 0, green: 0, blue: 0, alpha: 1.0))
-        let l: CGFloat = 2.5/sqrt(2)
+        let l: CGFloat = 5/sqrt(2)
         t.forward(distance: l)
         t.circle(radius: l, extent: 270, steps: 0)
         t.forward(distance: l)
@@ -192,7 +203,7 @@ class ViewController: NSViewController {
     
     func F(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 0, green: 255, blue: 0, alpha: 1.0))
-        t.forward(distance: 5)
+        t.forward(distance: 10)
         
     }
 

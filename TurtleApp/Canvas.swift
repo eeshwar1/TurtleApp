@@ -15,10 +15,10 @@ class Canvas: NSView {
     var bgColor: NSColor = .black
     
     override func draw(_ dirtyRect: NSRect) {
+        
         super.draw(dirtyRect)
         
-        bgColor.setFill()
-        bounds.fill()
+        fillBackground()
         
         let context = NSGraphicsContext.current?.cgContext
         
@@ -26,6 +26,12 @@ class Canvas: NSView {
             turtle.draw(context: context)
         }
         
+    }
+    
+    func fillBackground() {
+        
+        bgColor.setFill()
+        bounds.fill()
     }
     
     func addTurlte(turtle: Turtle) {
@@ -38,6 +44,15 @@ class Canvas: NSView {
             return context.cgContext
         }
         return nil
+    }
+    
+    func clear() {
+        
+        for turtle in turtles {
+            turtle.clear()
+        }
+        
+        self.needsDisplay = true
     }
     
 }
