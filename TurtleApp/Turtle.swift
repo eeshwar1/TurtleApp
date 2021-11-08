@@ -43,10 +43,10 @@ class Turtle {
     }
     
     init(id: String, canvas: Canvas) {
+        
         self.id = id
         self.canvas = canvas
-        // self.xPos = canvas.bounds.width/2
-        // self.yPos = canvas.bounds.height/2
+      
         self.canvas.addTurlte(turtle: self)
         
         self.turtleShape = drawTurtleShape()
