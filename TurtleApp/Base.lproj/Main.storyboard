@@ -722,8 +722,8 @@
                                     <stackView distribution="equalCentering" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EfC-NK-bz8">
                                         <rect key="frame" x="810" y="700" width="130" height="100"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1V4-ce-Ur8">
-                                                <rect key="frame" x="-7" y="73" width="122" height="32"/>
+                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1V4-ce-Ur8">
+                                                <rect key="frame" x="-7" y="75" width="122" height="30"/>
                                                 <buttonCell key="cell" type="push" title="Circle Drawing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Piv-Qf-Bou">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -732,8 +732,8 @@
                                                     <action selector="circleDrawingWithSender:" target="XfG-lQ-9wD" id="lHB-QZ-vxk"/>
                                                 </connections>
                                             </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FBu-ZY-Iy5">
-                                                <rect key="frame" x="-7" y="33" width="112" height="32"/>
+                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBu-ZY-Iy5">
+                                                <rect key="frame" x="-7" y="47" width="112" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Snake Kolam" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hoQ-od-zhJ">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -742,14 +742,24 @@
                                                     <action selector="drawSnakeKolamWithSender:" target="XfG-lQ-9wD" id="ppu-Ig-Y4V"/>
                                                 </connections>
                                             </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UHO-dX-dbU">
-                                                <rect key="frame" x="-7" y="-7" width="144" height="32"/>
+                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHO-dX-dbU">
+                                                <rect key="frame" x="-7" y="21" width="144" height="30"/>
                                                 <buttonCell key="cell" type="push" title="Anklets of Krishna" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vot-FW-aP9">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="drawAnkletsOfKrishnaWithSender:" target="XfG-lQ-9wD" id="sMd-Zl-9gs"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="meP-Qe-xTM">
+                                                <rect key="frame" x="-7" y="-7" width="66" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="srf-3h-TpN">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="clearCanvasWithSender:" target="XfG-lQ-9wD" id="KCo-To-AgC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -760,8 +770,10 @@
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
