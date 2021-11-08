@@ -14,11 +14,10 @@ class ViewController: NSViewController {
     var t: Turtle = Turtle()
     
     fileprivate func turtleDrawing() {
+        
         let turtle: Turtle = Turtle(id: "a", canvas: canvas)
         
-        
         let turtle2: Turtle = Turtle(id: "b", canvas: canvas)
-        
 
         turtle.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         turtle2.color(color: .init(red: 0, green: 255, blue: 0, alpha: 1))
@@ -48,7 +47,7 @@ class ViewController: NSViewController {
         self.t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         
         
-        self.t.goto(x: 300, y: 300)
+        self.t.goto(x: 300, y: 150)
         let snake_rules: [String: String] = ["-":"r", "+":"l", "f":"f", "b":"f+f+f--f--f+f+f"]
         
         let snake_replacementRules: [String: String] = ["b": "b+f+b--f--b+f+b"]
@@ -63,7 +62,7 @@ class ViewController: NSViewController {
         
         self.t.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         
-        self.t.goto(x: 200, y: 200)
+        self.t.goto(x: 300, y: 300)
         
         self.t.left(angle: 45)
     
@@ -91,19 +90,25 @@ class ViewController: NSViewController {
     }
     
     func replace(seq: String, replacementRules: [String: String], n: Int) -> String {
+        
+        var oldSeq = seq
         var newSeq = ""
         
         for _ in 0...n {
-            for (_, elem) in seq.enumerated() {
+            newSeq = ""
+            for (_, elem) in oldSeq.enumerated() {
                 // print(elem)
+                // newSeq = ""
                 if let repl = replacementRules[String(elem)] {
                     newSeq = newSeq + repl
                 } else {
                     newSeq = newSeq + String(elem)
                 }
+                
             }
+            oldSeq = newSeq
         }
-        return newSeq
+        return oldSeq
     }
     
     func draw(commands: String, rules: [String: String], turtle: Turtle) {
@@ -145,17 +150,17 @@ class ViewController: NSViewController {
     }
     
     func f(t: Turtle) {
-        t.forward(distance: 15)
+        t.forward(distance: 5)
     }
     
     func A(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 255, green: 0, blue: 0, alpha: 1.0))
-        t.circle(radius: 10, extent: 90, steps: 0)
+        t.circle(radius: 5, extent: 90, steps: 0)
     }
     
     func B(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 0, green: 0, blue: 0, alpha: 1.0))
-        let l: CGFloat = 5/sqrt(2)
+        let l: CGFloat = 2.5/sqrt(2)
         t.forward(distance: l)
         t.circle(radius: l, extent: 270, steps: 0)
         t.forward(distance: l)
@@ -164,7 +169,7 @@ class ViewController: NSViewController {
     
     func F(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 0, green: 255, blue: 0, alpha: 1.0))
-        t.forward(distance: 10)
+        t.forward(distance: 5)
         
     }
 
