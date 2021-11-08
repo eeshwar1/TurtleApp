@@ -8,10 +8,6 @@
 import Foundation
 import AppKit
 
-enum AngleUnits {
-    case degrees
-    case radians
-}
 class Turtle {
     
     private var id: String = ""
@@ -22,7 +18,8 @@ class Turtle {
     private var height: CGFloat = 10
     private var width: CGFloat = 10
     
-    private var linePath: CGMutablePath = CGMutablePath()
+    private var linePathColors: [CGColor] = [CGColor]()
+    private var linePaths: [CGMutablePath] = [CGMutablePath]()
     private var turtleShapePath: CGMutablePath = CGMutablePath()
     private var turtleShape: CGMutablePath = CGMutablePath()
     
@@ -47,7 +44,7 @@ class Turtle {
         self.id = id
         self.canvas = canvas
       
-        self.canvas.addTurlte(turtle: self)
+        self.canvas.addTurtle(turtle: self)
         
         self.turtleShape = drawTurtleShape()
         self.turtleShapePath = self.turtleShape
@@ -62,15 +59,20 @@ class Turtle {
             rotatedPath = rotatePath(path: self.turtleShapePath, radians: degreesToRadians(direction + 90))
         }
         
-        rotatedPath.addPath(linePath)
-        
         context?.setLineWidth(1.0)
         context?.setStrokeColor(self.penColor)
         context?.setFillColor(self.fillColor)
         
         context?.addPath(rotatedPath)
-        
         context?.drawPath(using: .stroke)
+        
+        for (idx, linePath) in linePaths.enumerated() {
+            
+            context?.setStrokeColor(self.linePathColors[idx])
+            context?.addPath(linePath)
+            context?.drawPath(using: .stroke)
+        }
+       
     }
     
     func drawTurtleShape() -> CGMutablePath {
@@ -123,13 +125,19 @@ class Turtle {
         
         let angleRadians = self.angleUnits == .radians ? direction : degreesToRadians(direction)
         
-        xPos = xPos + (isForward ? 1 : -1) * (distance * sin(angleRadians)).rounded()
-        yPos = yPos + (isForward ? 1 : -1) * (distance * cos(angleRadians)).rounded()
+        self.xPos = self.xPos + (isForward ? 1 : -1) * (distance * sin(angleRadians)).rounded()
+        self.yPos = self.yPos + (isForward ? 1 : -1) * (distance * cos(angleRadians)).rounded()
         
         if penDown == true {
+            let linePath = CGMutablePath()
             linePath.move(to: CGPoint(x: prevXPos, y: prevYPos))
             linePath.addLine(to: CGPoint(x: xPos, y: yPos))
+            self.linePaths.append(linePath)
+            self.linePathColors.append(self.penColor)
         }
+        
+        
+        
         
     }
     
@@ -163,21 +171,31 @@ class Turtle {
         }
     }
     
-    func circle(radius: CGFloat, extent: Int, steps: Int) {
+    func circle(radius: CGFloat, extent: Int, steps: Int = 0) {
         
-        let angleRadians = self.angleUnits == .radians ? direction : degreesToRadians(direction)
-        let direction: Bool = radius > 0 ? false: true
+        let angleRadians = self.angleUnits == .radians ? direction : degreesToRadians(direction - 90)
+        let extentRadians = self.angleUnits == .radians ? direction : degreesToRadians(CGFloat(extent))
+        
+        let dir: Bool = radius < 0 ? false: true
 
         let centerX = self.xPos - radius * cos(angleRadians)
         let centerY = self.yPos - radius * sin(angleRadians)
         
-        linePath.addArc(center: CGPoint(x: centerX, y: centerY), radius: radius, startAngle: 0, endAngle: angleRadians, clockwise: direction)
+        let linePath = CGMutablePath()
+        
+        linePath.move(to: CGPoint(x: self.xPos, y: self.yPos))
+    
+        linePath.addArc(center: CGPoint(x: centerX, y: centerY), radius: radius, startAngle: 0, endAngle: angleRadians, clockwise: dir)
+    
+        self.linePaths.append(linePath)
+        self.linePathColors.append(self.penColor)
         
         self.left(angle: CGFloat(extent))
         
         self.xPos = linePath.currentPoint.x
         self.yPos = linePath.currentPoint.y
     }
+    
     func heading() -> CGFloat {
         
         return self.angleUnits == .radians ? direction : degreesToRadians(direction)
@@ -219,7 +237,8 @@ class Turtle {
     
     func clear() {
         
-        self.linePath = CGMutablePath()
+        self.linePaths = [CGMutablePath]()
+        self.linePathColors = [CGColor]()
         self.turtleShapePath = CGMutablePath()
     }
     

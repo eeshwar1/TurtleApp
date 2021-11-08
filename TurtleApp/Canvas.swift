@@ -12,7 +12,7 @@ class Canvas: NSView {
 
     var turtles: [Turtle] = []
     
-    var bgColor: NSColor = .black
+    var bgColor: NSColor = .white
     
     override func draw(_ dirtyRect: NSRect) {
         
@@ -34,7 +34,7 @@ class Canvas: NSView {
         bounds.fill()
     }
     
-    func addTurlte(turtle: Turtle) {
+    func addTurtle(turtle: Turtle) {
         self.turtles.append(turtle)
     }
     

@@ -26,3 +26,8 @@ func rotatePath(path: CGPath, radians: CGFloat) -> CGMutablePath {
     return rotatedPath
     
 }
+
+enum AngleUnits {
+    case degrees
+    case radians
+}

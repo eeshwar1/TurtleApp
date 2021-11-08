@@ -78,9 +78,9 @@ class ViewController: NSViewController {
         
         // turtleDrawing()
         
-        snakeKolam()
+        // snakeKolam()
         
-        // ankletsOfKrishna()
+        ankletsOfKrishna()
         
     }
     
@@ -176,14 +176,14 @@ class ViewController: NSViewController {
     
     func A(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 255, green: 0, blue: 0, alpha: 1.0))
-        t.circle(radius: 10, extent: 90, steps: 0)
+        t.circle(radius: 10, extent: 90)
     }
     
     func B(t: Turtle) {
         t.pencolor(color: CGColor.init(red: 0, green: 0, blue: 0, alpha: 1.0))
         let l: CGFloat = 5/sqrt(2)
         t.forward(distance: l)
-        t.circle(radius: l, extent: 270, steps: 0)
+        t.circle(radius: l, extent: 270)
         t.forward(distance: l)
         
     }
