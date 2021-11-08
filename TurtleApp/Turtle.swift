@@ -36,6 +36,10 @@ class Turtle {
     
     private var canvas: Canvas
     
+    init() {
+        self.canvas = Canvas()
+    }
+    
     init(id: String, canvas: Canvas) {
         self.id = id
         self.canvas = canvas
@@ -65,7 +69,7 @@ class Turtle {
         
         context?.addPath(rotatedPath)
         
-        context?.drawPath(using: .fillStroke)
+        context?.drawPath(using: .stroke)
     }
     
     func printDetails() {
@@ -145,6 +149,21 @@ class Turtle {
         }
     }
     
+    func circle(radius: CGFloat, extent: Int, steps: Int) {
+        
+        let angleRadians = self.angleUnits == .radians ? direction : degreesToRadians(direction)
+        let direction: Bool = radius > 0 ? false: true
+
+        let centerX = self.xPos - radius * cos(angleRadians)
+        let centerY = self.yPos - radius * sin(angleRadians)
+        
+        linePath.addArc(center: CGPoint(x: centerX, y: centerY), radius: radius, startAngle: 0, endAngle: angleRadians, clockwise: direction)
+        
+        self.left(angle: CGFloat(extent))
+        
+        self.xPos = linePath.currentPoint.x
+        self.yPos = linePath.currentPoint.y
+    }
     func heading() -> CGFloat {
         
         return self.angleUnits == .radians ? direction : degreesToRadians(direction)
