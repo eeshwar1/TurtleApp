@@ -14,14 +14,16 @@ class ViewController: NSViewController {
     fileprivate func turtleDrawing() {
         
         let turtle: Turtle = Turtle(id: "a", canvas: canvas)
-
-        turtle.color(color: .init(red: 255, green: 0, blue: 0, alpha: 1))
        
+        let redColor: CGColor = CGColor.init(red: 255, green: 0, blue: 0, alpha: 1)
+        let greenColor: CGColor = CGColor.init(red: 0, green: 0, blue: 255, alpha: 1)
         
         turtle.goto(x: 400, y: 150)
         
-        for _ in 1...100 {
+        for i in 1...100 {
             
+            let lineColor = i%2 == 0 ? redColor: greenColor
+            turtle.color(color: lineColor)
             turtle.forward(distance: 600)
             turtle.left(angle: 170)
             
